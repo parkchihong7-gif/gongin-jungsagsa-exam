@@ -39934,7 +39934,7 @@ function renderQuestionList(list, title, backFn, backLabel, meta) {
       }
     }
     if (!revealed) {
-      document.getElementById("scoreInfo").innerHTML = `답안 선택 ${answered.length}/${list.length}문항 · [채점하기]를 누르면 결과가 표시됩니다`;
+      document.getElementById("scoreInfo").innerHTML = `답안 선택 ${answered.length}/${list.length}문항`;
       return;
     }
     // 채점된 결과는 [채점하기]를 누른 시점에 저장된 스냅샷을 그대로 보여준다.
