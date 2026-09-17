@@ -39892,23 +39892,36 @@ function renderQuestionList(list, title, backFn, backLabel, meta) {
 
   function updateScoreInfo() {
     const answers = currentAnswerSource();
-    const known = list.filter(q => q.answerIdx !== null && q.answerIdx !== undefined);
     const answered = list.filter(q => answers[qid(q)] !== undefined);
-    const correct = known.filter(q => isCorrect(answers[qid(q)], q.answerIdx));
     if (!meta) {
       document.getElementById("scoreInfo").innerHTML = `답안 선택 ${answered.length}/${list.length}문항 · 정답을 선택하면 바로 표시됩니다`;
       return;
     }
-    const graded = viewingAttemptNum > 0 || revealed;
-    if (!graded) {
+    if (viewingAttemptNum > 0) {
+      // 과거 기록 조회 중: 그 시점에 저장된 채점 결과 스냅샷을 그대로 보여준다.
+      const row = getAttemptHistoryRows(meta.sourceType, meta.sourceId, meta.subject).find(r => r.attemptNum === viewingAttemptNum);
+      if (row) {
+        const score = Math.round(row.correctCount * 2.5 * 10) / 10;
+        document.getElementById("scoreInfo").innerHTML = row.totalQuestions > 0
+          ? `채점 결과: <b>${score}/100</b>점 (정답 ${row.correctCount}/${row.totalQuestions}문항) · 답안 선택 ${row.answeredCount}/${row.totalQuestions}`
+          : `답안 선택 ${row.answeredCount}/${row.totalQuestions}문항`;
+        return;
+      }
+    }
+    if (!revealed) {
       document.getElementById("scoreInfo").innerHTML = `답안 선택 ${answered.length}/${list.length}문항 · [채점하기]를 누르면 결과가 표시됩니다`;
       return;
     }
-    const score = Math.round(correct.length * 2.5 * 10) / 10;
-    document.getElementById("scoreInfo").innerHTML =
-      known.length > 0
-        ? `채점 결과: <b>${score}/100</b>점 (정답 ${correct.length}/${known.length}문항) · 답안 선택 ${answered.length}/${list.length}`
-        : `답안 선택 ${answered.length}/${list.length}문항 · 정답지가 등록되면 자동 채점됩니다`;
+    // 채점된 결과는 [채점하기]를 누른 시점에 저장된 스냅샷을 그대로 보여준다.
+    // 이후 답을 바꾸거나 새로 골라도 [채점하기]를 다시 눌러야만 이 숫자가 갱신된다.
+    const savedAttempt = loadAttempts()[attemptKey(meta.sourceType, meta.sourceId, meta.subject)];
+    if (savedAttempt && savedAttempt.isGraded) {
+      const score = Math.round(savedAttempt.correctCount * 2.5 * 10) / 10;
+      document.getElementById("scoreInfo").innerHTML =
+        savedAttempt.totalQuestions > 0
+          ? `채점 결과: <b>${score}/100</b>점 (정답 ${savedAttempt.correctCount}/${savedAttempt.totalQuestions}문항) · 답안 선택 ${savedAttempt.answeredCount}/${savedAttempt.totalQuestions}`
+          : `답안 선택 ${answered.length}/${list.length}문항 · 정답지가 등록되면 자동 채점됩니다`;
+    }
   }
 
   function drawList() {
