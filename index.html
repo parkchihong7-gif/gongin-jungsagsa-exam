@@ -39985,10 +39985,10 @@ function renderQuestionList(list, title, backFn, backLabel, meta) {
         <div class="qnum"><span>문제 ${q.num} · ${q.subject}</span>${resultBadge}</div>
         <div class="qtext"></div>
         <div class="qopts">${optsHtml}</div>
-        <button class="aibtn askaibtn" data-qid="${id}">🤖 AI 문제풀이</button>
-        <button class="bookmarkbtn ${bookmarks[id] ? "active" : ""}" data-qid="${id}">${bookmarks[id] ? "★" : "☆"} 저장</button>
-        <button class="aibtn checkbtn" data-qid="${id}" ${picked === undefined ? "disabled" : ""}>정답 확인</button>
         <button class="aibtn notebtn ${noteText ? "active" : ""}" data-qid="${id}">💬 메모</button>
+        <button class="aibtn askaibtn" data-qid="${id}">🤖 AI 문제풀이</button>
+        <button class="aibtn checkbtn" data-qid="${id}" ${picked === undefined ? "disabled" : ""}>✅ 정답 확인</button>
+        <button class="bookmarkbtn ${bookmarks[id] ? "active" : ""}" data-qid="${id}">${bookmarks[id] ? "★" : "☆"} 저장</button>
         <div class="aipanel" id="aipanel-${cssSafe(id)}"></div>
         ${noteText ? `<div class="qnote">${escapeHtml(noteText)}</div>` : ""}
         <div class="qnoteEdit" id="qnoteEdit-${cssSafe(id)}" style="display:none;">
