@@ -39429,6 +39429,11 @@ function clearAnswersFor(list) {
   list.forEach(q => { delete answers[qid(q)]; });
   saveAnswers(answers);
 }
+function clearNotesFor(list) {
+  const notes = loadNotes();
+  list.forEach(q => { delete notes[qid(q)]; });
+  saveNotes(notes);
+}
 function formatElapsed(sec) {
   if (!sec) return "-";
   const m = Math.floor(sec / 60), s = sec % 60;
@@ -39885,6 +39890,7 @@ function renderQuestionList(list, title, backFn, backLabel, meta) {
       archiveCurrentAttempt(list, meta); // 아직 채점 전이면 아무 것도 하지 않음
       clearCurrentAttempt(meta.sourceType, meta.sourceId, meta.subject);
       clearAnswersFor(list);
+      clearNotesFor(list);
       revealed = false;
       revealedIds = new Set();
       secondsLeft = 50 * 60;
