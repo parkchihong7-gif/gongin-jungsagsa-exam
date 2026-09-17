@@ -39806,6 +39806,17 @@ function renderQuestionList(list, title, backFn, backLabel, meta) {
     });
   }
 
+  // 과거 회차 기록([1회차][2회차]...)을 읽기전용으로 보는 중에는 [채점하기]/[리셋]을 숨긴다.
+  // 이 버튼들은 항상 "지금 진행 중인(가장 최근) 회차"만 대상으로 동작하는데, 과거 기록을 보면서
+  // 이 버튼을 누르면 화면에 보이는 과거 회차가 아니라 진행 중인 회차가 리셋되어 혼란을 주기 때문.
+  function updateActionButtons() {
+    const gb = document.getElementById("gradeBtn");
+    const rb = document.getElementById("resetBtn");
+    const show = viewingAttemptNum === 0;
+    if (gb) gb.style.display = show ? "" : "none";
+    if (rb) rb.style.display = show ? "" : "none";
+  }
+
   function bindHistoryPills() {
     const row = document.getElementById("historyRow");
     if (!row) return;
@@ -39813,6 +39824,7 @@ function renderQuestionList(list, title, backFn, backLabel, meta) {
       p.onclick = () => {
         viewingAttemptNum = parseInt(p.dataset.attempt, 10) || 0;
         row.querySelectorAll(".histpill").forEach(x => x.classList.toggle("active", x === p));
+        updateActionButtons();
         drawList();
         updateScoreInfo();
       };
@@ -40238,6 +40250,13 @@ function renderSettings() {
       </div>
       <button class="savebtn" id="saveBtn">저장</button>
       <span class="savedmsg" id="savedMsg">저장되었습니다 ✓</span>
+      <div class="field" style="margin-top:22px;">
+        <label>전체 초기화</label>
+        <div id="resetAllProgressWrap" style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+          <button class="resetbtn" id="resetAllProgressBtn">전체 초기화</button>
+          <span class="hint">지금까지 푼 모든 문제의 답안, 채점 결과, 회차별 기록이 초기화됩니다. 저장한 문제(★)와 설정은 유지됩니다. 되돌릴 수 없습니다.</span>
+        </div>
+      </div>
     </div>
   `;
   document.getElementById("setProvider").value = s.lastProvider || s.provider || "chatgpt";
@@ -40253,6 +40272,27 @@ function renderSettings() {
     saveSettings(Object.assign({}, loadSettings(), { provider: val, lastProvider: val, examMode: mode }));
     const msg = document.getElementById("savedMsg");
     msg.style.display = "inline"; setTimeout(() => msg.style.display = "none", 2000);
+  };
+  // 전체 초기화도 관리자 [키 초기화]와 동일하게 네이티브 confirm() 없이,
+  // "초기화"를 정확히 입력해야만 실행 버튼이 활성화되는 방식으로 강하게 확인시킨다.
+  document.getElementById("resetAllProgressBtn").onclick = () => {
+    const wrap = document.getElementById("resetAllProgressWrap");
+    wrap.innerHTML = `
+      <input type="text" id="resetAllConfirmInput" placeholder='"초기화" 입력 후 확인' style="flex:1; min-width:180px;">
+      <button class="resetbtn" id="resetAllConfirmBtn" disabled>확인</button>
+      <button class="aibtn" id="resetAllCancelBtn">취소</button>
+      <span class="hint">모든 문제 풀이 기록이 영구 삭제됩니다. 확인하려면 "초기화"를 정확히 입력하세요.</span>
+    `;
+    const input = document.getElementById("resetAllConfirmInput");
+    const confirmBtn = document.getElementById("resetAllConfirmBtn");
+    input.addEventListener("input", () => { confirmBtn.disabled = input.value.trim() !== "초기화"; });
+    document.getElementById("resetAllCancelBtn").onclick = () => renderSettings();
+    confirmBtn.onclick = () => {
+      localStorage.removeItem("examAnswers");
+      localStorage.removeItem("examAttempts");
+      localStorage.removeItem("examAttemptHistory");
+      renderSettings();
+    };
   };
 }
 
