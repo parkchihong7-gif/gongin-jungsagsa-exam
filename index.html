@@ -106,6 +106,14 @@
   @media (prefers-color-scheme: dark) { .bookmarkbtn { background:#24241f; border-color:#3a3a36; color:#f0efec; } }
   .bookmarkbtn.active { background:#f5e6a8; border-color:#d8c56a; color:#6b5a1a; }
   @media (prefers-color-scheme: dark) { .bookmarkbtn.active { background:#4a3f1a; border-color:#6b5a1a; color:#f5e6a8; } }
+  .notebtn.active { background:#dbe8f7; border-color:#7fa8d9; color:#2a4d78; }
+  @media (prefers-color-scheme: dark) { .notebtn.active { background:#1c3350; border-color:#3d6ea8; color:#bcd7f5; } }
+  .qnote { margin-top:10px; font-size:12.5px; line-height:1.6; background:#dbe8f7; border-left:3px solid #3d78c2; border-radius:6px; padding:10px 12px; color:#1f3a5c; white-space:pre-line; }
+  @media (prefers-color-scheme: dark) { .qnote { background:#1c3350; border-left-color:#5a93d8; color:#bcd7f5; } }
+  .qnoteEdit { margin-top:10px; display:flex; flex-direction:column; gap:6px; }
+  .qnoteEdit textarea { width:100%; box-sizing:border-box; min-height:60px; font-family:inherit; font-size:12.5px; padding:8px 10px; border-radius:8px; border:1px solid #d8d6cf; resize:vertical; }
+  @media (prefers-color-scheme: dark) { .qnoteEdit textarea { background:#1a1a18; border-color:#3a3a36; color:#f0efec; } }
+  .qnoteEdit .aibtn { margin-top:0; align-self:flex-start; }
   .reviewCards { display:flex; gap:12px; margin-bottom:22px; }
   .reviewCard { flex:1; min-width:130px; text-align:left; background:#fff; border:1px solid #e2e0d8; border-radius:12px; padding:14px 16px; cursor:pointer; font-family:inherit; }
   .reviewCard .v { font-size:22px; font-weight:700; }
@@ -39432,6 +39440,11 @@ function loadBookmarks() { try { return JSON.parse(localStorage.getItem("examBoo
 function saveBookmarks(obj) { localStorage.setItem("examBookmarks", JSON.stringify(obj)); }
 function toggleBookmark(id) { const b = loadBookmarks(); if (b[id]) delete b[id]; else b[id] = true; saveBookmarks(b); return !!b[id]; }
 
+// 문제별 개인 메모(코멘트). qid 기준이라 회차/과목별/모의고사/복습함/과거 기록 조회에서 모두 동일하게 보인다.
+function loadNotes() { try { return JSON.parse(localStorage.getItem("examNotes") || "{}"); } catch(e) { return {}; } }
+function saveNotes(obj) { localStorage.setItem("examNotes", JSON.stringify(obj)); }
+function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])); }
+
 let currentNav = "round";
 
 function isUnlocked() { return localStorage.getItem("examUnlocked") === "1"; }
@@ -39940,6 +39953,7 @@ function renderQuestionList(list, title, backFn, backLabel, meta) {
     const answers = currentAnswerSource();
     const readOnly = viewingAttemptNum > 0;
     const bookmarks = loadBookmarks();
+    const notes = loadNotes();
     const qlist = document.getElementById("qlist");
     qlist.innerHTML = "";
     const kw = (document.getElementById("qSearch").value || "").trim();
@@ -39966,16 +39980,21 @@ function renderQuestionList(list, title, backFn, backLabel, meta) {
         else if (revealNow && known && picked === idx) cls += " iswrong";
         return `<button class="${cls}" data-idx="${idx}" ${readOnly ? "disabled" : ""}>${idx + 1}. ${o}</button>`;
       }).join("");
+      const noteText = notes[id] || "";
       qcard.innerHTML = `
         <div class="qnum"><span>문제 ${q.num} · ${q.subject}</span>${resultBadge}</div>
         <div class="qtext"></div>
         <div class="qopts">${optsHtml}</div>
-        ${readOnly ? "" : `
-          <button class="aibtn" data-qid="${id}">🤖 AI 문제풀이</button>
-          <button class="bookmarkbtn ${bookmarks[id] ? "active" : ""}" data-qid="${id}">${bookmarks[id] ? "★" : "☆"} 저장</button>
-          ${!revealNow ? `<button class="aibtn checkbtn" data-qid="${id}" ${picked === undefined ? "disabled" : ""}>정답 확인</button>` : ""}
-          <div class="aipanel" id="aipanel-${cssSafe(id)}"></div>
-        `}
+        <button class="aibtn askaibtn" data-qid="${id}">🤖 AI 문제풀이</button>
+        <button class="bookmarkbtn ${bookmarks[id] ? "active" : ""}" data-qid="${id}">${bookmarks[id] ? "★" : "☆"} 저장</button>
+        ${(!readOnly && !revealNow) ? `<button class="aibtn checkbtn" data-qid="${id}" ${picked === undefined ? "disabled" : ""}>정답 확인</button>` : ""}
+        <button class="aibtn notebtn ${noteText ? "active" : ""}" data-qid="${id}">💬 메모</button>
+        <div class="aipanel" id="aipanel-${cssSafe(id)}"></div>
+        ${noteText ? `<div class="qnote">${escapeHtml(noteText)}</div>` : ""}
+        <div class="qnoteEdit" id="qnoteEdit-${cssSafe(id)}" style="display:none;">
+          <textarea class="qnoteInput" placeholder="이 문제에 대한 개인 메모를 남겨보세요.">${escapeHtml(noteText)}</textarea>
+          <button class="aibtn qnoteSaveBtn">저장</button>
+        </div>
       `;
       qcard.querySelector(".qtext").textContent = q.text;
 
@@ -39991,8 +40010,10 @@ function renderQuestionList(list, title, backFn, backLabel, meta) {
             updateScoreInfo();
           };
         });
+      }
 
-        const aiBtn = qcard.querySelector(".aibtn");
+      {
+        const aiBtn = qcard.querySelector(".askaibtn");
         const aiPanel = qcard.querySelector(".aipanel");
         aiBtn.onclick = () => { openAIPopup(q, aiPanel); };
 
@@ -40011,6 +40032,21 @@ function renderQuestionList(list, title, backFn, backLabel, meta) {
             updateScoreInfo();
           };
         }
+
+        const noteBtn = qcard.querySelector(".notebtn");
+        const noteEdit = qcard.querySelector(".qnoteEdit");
+        noteBtn.onclick = () => {
+          const showing = noteEdit.style.display !== "none";
+          noteEdit.style.display = showing ? "none" : "flex";
+          if (!showing) noteEdit.querySelector("textarea").focus();
+        };
+        qcard.querySelector(".qnoteSaveBtn").onclick = () => {
+          const val = qcard.querySelector(".qnoteInput").value;
+          const cur = loadNotes();
+          if (val.trim()) cur[id] = val; else delete cur[id];
+          saveNotes(cur);
+          drawList();
+        };
       }
 
       qlist.appendChild(qcard);
