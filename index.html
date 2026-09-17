@@ -162,8 +162,9 @@
 <div class="gateOverlay" id="gateOverlay" style="display:none;">
   <div class="gateBox">
     <h2>인증코드 입력</h2>
-    <p>발급받은 1회용 인증코드를 입력해야 이용할 수 있습니다.</p>
-    <input type="text" id="gateInput" placeholder="XXXX-XXXX-XXXX" autocomplete="off">
+    <p>1차 인증키와 2차 인증키를 모두 입력해야 이용할 수 있습니다. (예전에 발급받은 단일 코드는 1차 인증키 칸에만 입력하세요.)</p>
+    <input type="text" id="gateInput" placeholder="1차 인증키" autocomplete="off">
+    <input type="text" id="gateInput2" placeholder="2차 인증키 (PC/노트북/휴대폰 중 이 기기용)" autocomplete="off">
     <button id="gateSubmit">확인</button>
     <div class="gateMsg" id="gateMsg"></div>
   </div>
@@ -13425,7 +13426,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
  }
 ,
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "부동산학개론",
@@ -13441,7 +13442,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 2
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "부동산학개론",
@@ -13457,7 +13458,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 2
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "부동산학개론",
@@ -13473,7 +13474,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 2
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "부동산학개론",
@@ -13489,7 +13490,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 4
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "부동산학개론",
@@ -13505,7 +13506,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 4
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "부동산학개론",
@@ -13521,7 +13522,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "부동산학개론",
@@ -13537,7 +13538,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 4
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "부동산학개론",
@@ -13553,7 +13554,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 4
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "부동산학개론",
@@ -13569,7 +13570,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "부동산학개론",
@@ -13585,7 +13586,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "부동산학개론",
@@ -13601,7 +13602,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 1
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "부동산학개론",
@@ -13617,7 +13618,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 2
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "부동산학개론",
@@ -13633,7 +13634,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 0
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "부동산학개론",
@@ -13649,7 +13650,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 0
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "부동산학개론",
@@ -13665,7 +13666,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 1
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "부동산학개론",
@@ -13681,7 +13682,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "부동산학개론",
@@ -13697,7 +13698,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 1
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "부동산학개론",
@@ -13713,7 +13714,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "부동산학개론",
@@ -13729,7 +13730,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "부동산학개론",
@@ -13745,7 +13746,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "부동산학개론",
@@ -13761,7 +13762,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 0
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "부동산학개론",
@@ -13777,7 +13778,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "부동산학개론",
@@ -13793,7 +13794,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "부동산학개론",
@@ -13809,7 +13810,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 1
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "부동산학개론",
@@ -13825,7 +13826,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 4
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "부동산학개론",
@@ -13841,7 +13842,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 0
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "부동산학개론",
@@ -13857,7 +13858,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 0
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "부동산학개론",
@@ -13873,7 +13874,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 0
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "부동산학개론",
@@ -13889,7 +13890,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "부동산학개론",
@@ -13905,7 +13906,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "부동산학개론",
@@ -13921,7 +13922,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 4
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "부동산학개론",
@@ -13937,7 +13938,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 1
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "부동산학개론",
@@ -13953,7 +13954,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 4
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "부동산학개론",
@@ -13969,7 +13970,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 0
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "부동산학개론",
@@ -13985,7 +13986,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 2
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "부동산학개론",
@@ -14001,7 +14002,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 4
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "부동산학개론",
@@ -14017,7 +14018,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "부동산학개론",
@@ -14033,7 +14034,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 0
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "부동산학개론",
@@ -14049,7 +14050,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 1
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "부동산학개론",
@@ -14065,7 +14066,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 2
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "민법 및 민사특별법",
@@ -14081,7 +14082,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 1
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "민법 및 민사특별법",
@@ -14097,7 +14098,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 0
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "민법 및 민사특별법",
@@ -14113,7 +14114,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 4
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "민법 및 민사특별법",
@@ -14129,7 +14130,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 0
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "민법 및 민사특별법",
@@ -14145,7 +14146,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 2
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "민법 및 민사특별법",
@@ -14161,7 +14162,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 4
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "민법 및 민사특별법",
@@ -14177,7 +14178,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "민법 및 민사특별법",
@@ -14193,7 +14194,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "민법 및 민사특별법",
@@ -14209,7 +14210,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 0
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "민법 및 민사특별법",
@@ -14225,7 +14226,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 2
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "민법 및 민사특별법",
@@ -14241,7 +14242,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 4
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "민법 및 민사특별법",
@@ -14257,7 +14258,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 0
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "민법 및 민사특별법",
@@ -14273,7 +14274,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 2
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "민법 및 민사특별법",
@@ -14289,7 +14290,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "민법 및 민사특별법",
@@ -14305,7 +14306,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 4
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "민법 및 민사특별법",
@@ -14321,7 +14322,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 1
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "민법 및 민사특별법",
@@ -14337,7 +14338,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "민법 및 민사특별법",
@@ -14353,7 +14354,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 1
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "민법 및 민사특별법",
@@ -14369,7 +14370,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 4
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "민법 및 민사특별법",
@@ -14385,7 +14386,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 0
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "민법 및 민사특별법",
@@ -14401,7 +14402,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "민법 및 민사특별법",
@@ -14417,7 +14418,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 1
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "민법 및 민사특별법",
@@ -14433,7 +14434,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "민법 및 민사특별법",
@@ -14449,7 +14450,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 2
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "민법 및 민사특별법",
@@ -14465,7 +14466,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "민법 및 민사특별법",
@@ -14481,7 +14482,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 1
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "민법 및 민사특별법",
@@ -14497,7 +14498,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 2
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "민법 및 민사특별법",
@@ -14513,7 +14514,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "민법 및 민사특별법",
@@ -14529,7 +14530,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 0
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "민법 및 민사특별법",
@@ -14545,7 +14546,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 2
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "민법 및 민사특별법",
@@ -14561,7 +14562,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 4
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "민법 및 민사특별법",
@@ -14577,7 +14578,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 0
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "민법 및 민사특별법",
@@ -14593,7 +14594,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 2
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "민법 및 민사특별법",
@@ -14609,7 +14610,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 1
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "민법 및 민사특별법",
@@ -14625,7 +14626,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "민법 및 민사특별법",
@@ -14641,7 +14642,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 4
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "민법 및 민사특별법",
@@ -14657,7 +14658,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 1
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "민법 및 민사특별법",
@@ -14673,7 +14674,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 2
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "민법 및 민사특별법",
@@ -14689,7 +14690,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 4
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "1차",
   "session": "1교시",
   "subject": "민법 및 민사특별법",
@@ -14705,7 +14706,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 2
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "공인중개사법령 및 중개실무",
@@ -14721,7 +14722,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 2
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "공인중개사법령 및 중개실무",
@@ -14737,7 +14738,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 2
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "공인중개사법령 및 중개실무",
@@ -14753,7 +14754,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 4
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "공인중개사법령 및 중개실무",
@@ -14769,7 +14770,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 0
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "공인중개사법령 및 중개실무",
@@ -14785,7 +14786,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 0
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "공인중개사법령 및 중개실무",
@@ -14801,7 +14802,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "공인중개사법령 및 중개실무",
@@ -14817,7 +14818,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 1
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "공인중개사법령 및 중개실무",
@@ -14833,7 +14834,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "공인중개사법령 및 중개실무",
@@ -14849,7 +14850,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 4
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "공인중개사법령 및 중개실무",
@@ -14865,7 +14866,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "공인중개사법령 및 중개실무",
@@ -14881,7 +14882,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 4
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "공인중개사법령 및 중개실무",
@@ -14897,7 +14898,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "공인중개사법령 및 중개실무",
@@ -14913,7 +14914,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "공인중개사법령 및 중개실무",
@@ -14929,7 +14930,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 1
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "공인중개사법령 및 중개실무",
@@ -14945,7 +14946,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 2
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "공인중개사법령 및 중개실무",
@@ -14961,7 +14962,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "공인중개사법령 및 중개실무",
@@ -14977,7 +14978,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 4
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "공인중개사법령 및 중개실무",
@@ -14993,7 +14994,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 2
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "공인중개사법령 및 중개실무",
@@ -15009,7 +15010,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 1
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "공인중개사법령 및 중개실무",
@@ -15025,7 +15026,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 2
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "공인중개사법령 및 중개실무",
@@ -15041,7 +15042,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "공인중개사법령 및 중개실무",
@@ -15057,7 +15058,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 1
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "공인중개사법령 및 중개실무",
@@ -15073,7 +15074,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 4
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "공인중개사법령 및 중개실무",
@@ -15089,7 +15090,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "공인중개사법령 및 중개실무",
@@ -15105,7 +15106,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 0
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "공인중개사법령 및 중개실무",
@@ -15121,7 +15122,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 1
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "공인중개사법령 및 중개실무",
@@ -15137,7 +15138,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 0
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "공인중개사법령 및 중개실무",
@@ -15153,7 +15154,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 1
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "공인중개사법령 및 중개실무",
@@ -15169,7 +15170,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 2
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "공인중개사법령 및 중개실무",
@@ -15185,7 +15186,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 4
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "공인중개사법령 및 중개실무",
@@ -15201,7 +15202,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 1
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "공인중개사법령 및 중개실무",
@@ -15217,7 +15218,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 2
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "공인중개사법령 및 중개실무",
@@ -15233,7 +15234,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "공인중개사법령 및 중개실무",
@@ -15249,7 +15250,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 4
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "공인중개사법령 및 중개실무",
@@ -15265,7 +15266,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 0
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "공인중개사법령 및 중개실무",
@@ -15281,7 +15282,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "공인중개사법령 및 중개실무",
@@ -15297,7 +15298,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 1
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "공인중개사법령 및 중개실무",
@@ -15313,7 +15314,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 2
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "공인중개사법령 및 중개실무",
@@ -15329,7 +15330,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 4
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "공인중개사법령 및 중개실무",
@@ -15345,7 +15346,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 0
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "2교시",
   "subject": "부동산공시에 관한 법령 및 부동산세법",
@@ -15361,7 +15362,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "2교시",
   "subject": "부동산공시에 관한 법령 및 부동산세법",
@@ -15377,7 +15378,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 4
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "2교시",
   "subject": "부동산공시에 관한 법령 및 부동산세법",
@@ -15393,7 +15394,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 1
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "2교시",
   "subject": "부동산공시에 관한 법령 및 부동산세법",
@@ -15409,7 +15410,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "2교시",
   "subject": "부동산공시에 관한 법령 및 부동산세법",
@@ -15425,7 +15426,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 2
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "2교시",
   "subject": "부동산공시에 관한 법령 및 부동산세법",
@@ -15441,7 +15442,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 4
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "2교시",
   "subject": "부동산공시에 관한 법령 및 부동산세법",
@@ -15457,7 +15458,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 4
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "2교시",
   "subject": "부동산공시에 관한 법령 및 부동산세법",
@@ -15473,7 +15474,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 1
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "2교시",
   "subject": "부동산공시에 관한 법령 및 부동산세법",
@@ -15489,7 +15490,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 0
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "2교시",
   "subject": "부동산공시에 관한 법령 및 부동산세법",
@@ -15505,7 +15506,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 4
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "2교시",
   "subject": "부동산공시에 관한 법령 및 부동산세법",
@@ -15521,7 +15522,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 2
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "2교시",
   "subject": "부동산공시에 관한 법령 및 부동산세법",
@@ -15537,7 +15538,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 0
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "2교시",
   "subject": "부동산공시에 관한 법령 및 부동산세법",
@@ -15553,7 +15554,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "2교시",
   "subject": "부동산공시에 관한 법령 및 부동산세법",
@@ -15569,7 +15570,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 2
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "2교시",
   "subject": "부동산공시에 관한 법령 및 부동산세법",
@@ -15585,7 +15586,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 1
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "2교시",
   "subject": "부동산공시에 관한 법령 및 부동산세법",
@@ -15601,7 +15602,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "2교시",
   "subject": "부동산공시에 관한 법령 및 부동산세법",
@@ -15617,7 +15618,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "2교시",
   "subject": "부동산공시에 관한 법령 및 부동산세법",
@@ -15633,7 +15634,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 2
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "2교시",
   "subject": "부동산공시에 관한 법령 및 부동산세법",
@@ -15649,7 +15650,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 1
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "2교시",
   "subject": "부동산공시에 관한 법령 및 부동산세법",
@@ -15665,7 +15666,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 4
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "2교시",
   "subject": "부동산공시에 관한 법령 및 부동산세법",
@@ -15681,7 +15682,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 4
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "2교시",
   "subject": "부동산공시에 관한 법령 및 부동산세법",
@@ -15697,7 +15698,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 4
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "2교시",
   "subject": "부동산공시에 관한 법령 및 부동산세법",
@@ -15713,7 +15714,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 4
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "2교시",
   "subject": "부동산공시에 관한 법령 및 부동산세법",
@@ -15729,7 +15730,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 2
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "2교시",
   "subject": "부동산공시에 관한 법령 및 부동산세법",
@@ -15745,7 +15746,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 1
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "2교시",
   "subject": "부동산공시에 관한 법령 및 부동산세법",
@@ -15761,7 +15762,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 4
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "2교시",
   "subject": "부동산공시에 관한 법령 및 부동산세법",
@@ -15777,7 +15778,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "2교시",
   "subject": "부동산공시에 관한 법령 및 부동산세법",
@@ -15793,7 +15794,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "2교시",
   "subject": "부동산공시에 관한 법령 및 부동산세법",
@@ -15809,7 +15810,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 1
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "2교시",
   "subject": "부동산공시에 관한 법령 및 부동산세법",
@@ -15825,7 +15826,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 2
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "2교시",
   "subject": "부동산공시에 관한 법령 및 부동산세법",
@@ -15841,7 +15842,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 1
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "2교시",
   "subject": "부동산공시에 관한 법령 및 부동산세법",
@@ -15857,7 +15858,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 0
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "2교시",
   "subject": "부동산공시에 관한 법령 및 부동산세법",
@@ -15873,7 +15874,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 0
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "2교시",
   "subject": "부동산공시에 관한 법령 및 부동산세법",
@@ -15889,7 +15890,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "2교시",
   "subject": "부동산공시에 관한 법령 및 부동산세법",
@@ -15905,7 +15906,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 0
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "2교시",
   "subject": "부동산공시에 관한 법령 및 부동산세법",
@@ -15921,7 +15922,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 2
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "2교시",
   "subject": "부동산공시에 관한 법령 및 부동산세법",
@@ -15937,7 +15938,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 2
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "2교시",
   "subject": "부동산공시에 관한 법령 및 부동산세법",
@@ -15953,7 +15954,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 4
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "2교시",
   "subject": "부동산공시에 관한 법령 및 부동산세법",
@@ -15969,7 +15970,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 0
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "2교시",
   "subject": "부동산공시에 관한 법령 및 부동산세법",
@@ -15985,7 +15986,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 2
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "부동산공법",
@@ -16001,7 +16002,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 0
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "부동산공법",
@@ -16017,7 +16018,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 0
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "부동산공법",
@@ -16033,7 +16034,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 4
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "부동산공법",
@@ -16049,7 +16050,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 4
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "부동산공법",
@@ -16065,7 +16066,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "부동산공법",
@@ -16081,7 +16082,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "부동산공법",
@@ -16097,7 +16098,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 2
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "부동산공법",
@@ -16113,7 +16114,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "부동산공법",
@@ -16129,7 +16130,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 1
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "부동산공법",
@@ -16148,7 +16149,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   ]
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "부동산공법",
@@ -16164,7 +16165,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "부동산공법",
@@ -16180,7 +16181,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "부동산공법",
@@ -16196,7 +16197,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 1
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "부동산공법",
@@ -16212,7 +16213,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "부동산공법",
@@ -16228,7 +16229,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "부동산공법",
@@ -16244,7 +16245,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 0
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "부동산공법",
@@ -16260,7 +16261,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 0
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "부동산공법",
@@ -16276,7 +16277,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 1
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "부동산공법",
@@ -16292,7 +16293,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 4
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "부동산공법",
@@ -16308,7 +16309,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 4
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "부동산공법",
@@ -16324,7 +16325,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 2
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "부동산공법",
@@ -16340,7 +16341,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 1
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "부동산공법",
@@ -16360,7 +16361,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   ]
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "부동산공법",
@@ -16376,7 +16377,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "부동산공법",
@@ -16392,7 +16393,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 1
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "부동산공법",
@@ -16408,7 +16409,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 2
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "부동산공법",
@@ -16424,7 +16425,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "부동산공법",
@@ -16440,7 +16441,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 1
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "부동산공법",
@@ -16456,7 +16457,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 1
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "부동산공법",
@@ -16472,7 +16473,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 2
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "부동산공법",
@@ -16488,7 +16489,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "부동산공법",
@@ -16504,7 +16505,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 4
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "부동산공법",
@@ -16520,7 +16521,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 0
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "부동산공법",
@@ -16536,7 +16537,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 4
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "부동산공법",
@@ -16552,7 +16553,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 0
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "부동산공법",
@@ -16568,7 +16569,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 4
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "부동산공법",
@@ -16587,7 +16588,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   ]
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "부동산공법",
@@ -16603,7 +16604,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 3
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "부동산공법",
@@ -16619,7 +16620,7 @@ const QUESTIONS = [{"round": "제32회", "cha": "1차", "session": "1교시", "s
   "answerIdx": 2
  },
  {
-  "round": "제15회추가",
+  "round": "제15회",
   "cha": "2차",
   "session": "1교시",
   "subject": "부동산공법",
@@ -39337,7 +39338,7 @@ const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwGmRMfzsP_YIYF
 const ROUND_LIST = (() => {
   const list = [];
   for (let r = 36; r >= 16; r--) list.push({ label: "제" + r + "회", sortKey: r });
-  list.push({ label: "제15회추가", sortKey: 15.5 });
+  list.push({ label: "제15회", sortKey: 15.5 });
   return list;
 })();
 
@@ -39434,15 +39435,51 @@ function isUnlocked() { return localStorage.getItem("examUnlocked") === "1"; }
 function showGate() { document.getElementById("gateOverlay").style.display = "flex"; }
 function hideGate() { document.getElementById("gateOverlay").style.display = "none"; }
 
-async function tryRedeem(codeOverride) {
+let sessionHeartbeatInterval = null;
+
+function lockOut(reason) {
+  if (sessionHeartbeatInterval) { clearInterval(sessionHeartbeatInterval); sessionHeartbeatInterval = null; }
+  localStorage.removeItem("examUnlocked");
+  localStorage.removeItem("examKey");
+  localStorage.removeItem("examKey2");
+  localStorage.removeItem("examSessionToken");
+  showGate();
+  const msg = document.getElementById("gateMsg");
+  if (msg) msg.textContent = reason || "세션이 종료되었습니다. 다시 인증해주세요.";
+}
+
+// 2차키(기기별 키)는 동시접속이 불가능하다: 다른 기기가 같은 2차키로 재인증하면
+// 서버의 sessionToken이 바뀌고, 이 기기는 주기적으로 checkSession으로 이를 감지해 강제 로그아웃된다.
+function startSessionHeartbeat() {
+  const token = localStorage.getItem("examSessionToken");
+  const key2 = localStorage.getItem("examKey2");
+  if (!token || !key2) return; // 레거시 단일키는 세션 동시접속 감지 대상이 아님
+  if (sessionHeartbeatInterval) clearInterval(sessionHeartbeatInterval);
+  const check = async () => {
+    try {
+      const res = await fetch(APPS_SCRIPT_URL + "?action=checkSession&key=" + encodeURIComponent(key2) + "&sessionToken=" + encodeURIComponent(token));
+      const data = await res.json();
+      if (!data.ok && data.reason === "session_replaced") {
+        lockOut("다른 기기에서 로그인되어 세션이 종료되었습니다.");
+      }
+    } catch (e) { /* 네트워크 오류 시 다음 주기에 재시도 */ }
+  };
+  sessionHeartbeatInterval = setInterval(check, 60000);
+}
+
+async function tryRedeem(codeOverride, code2Override) {
   const input = document.getElementById("gateInput");
+  const input2 = document.getElementById("gateInput2");
   const msg = document.getElementById("gateMsg");
   const code = (codeOverride || input.value || "").trim().toUpperCase();
-  if (!code) { msg.textContent = "코드를 입력해주세요."; return; }
+  const code2 = (code2Override || input2.value || "").trim().toUpperCase();
+  if (!code) { msg.textContent = "1차 인증키를 입력해주세요."; return; }
   msg.textContent = "확인 중...";
   let data;
   try {
-    const res = await fetch(APPS_SCRIPT_URL + "?action=validateKey&key=" + encodeURIComponent(code));
+    const qs = new URLSearchParams({ action: "validateKeyPair", key1: code });
+    if (code2) qs.set("key2", code2);
+    const res = await fetch(APPS_SCRIPT_URL + "?" + qs.toString());
     data = await res.json();
   } catch (e) {
     msg.textContent = "인증 서버에 연결할 수 없습니다. 인터넷 연결을 확인한 뒤 다시 시도해주세요.";
@@ -39451,8 +39488,22 @@ async function tryRedeem(codeOverride) {
   if (data.ok) {
     localStorage.setItem("examUnlocked", "1");
     localStorage.setItem("examKey", code);
+    if (data.sessionToken) {
+      localStorage.setItem("examKey2", code2);
+      localStorage.setItem("examSessionToken", data.sessionToken);
+    } else {
+      localStorage.removeItem("examKey2");
+      localStorage.removeItem("examSessionToken");
+    }
     hideGate();
+    startSessionHeartbeat();
     switchNav("round");
+  } else if (data.reason === "no_secondary") {
+    msg.textContent = "2차 인증키도 함께 입력해주세요.";
+  } else if (data.reason === "pair_mismatch" || data.reason === "secondary_not_found") {
+    msg.textContent = "1차 인증키와 2차 인증키의 조합이 올바르지 않습니다.";
+  } else if (data.reason === "suspended") {
+    msg.textContent = "사용이 중지된 코드입니다. 관리자에게 문의해주세요.";
   } else {
     msg.textContent = "유효하지 않거나 만료된 코드입니다. 다시 확인해주세요.";
   }
@@ -39704,10 +39755,11 @@ function renderQuestionList(list, title, backFn, backLabel, meta) {
   const historyHtml = renderHistoryPills(meta, viewingAttemptNum);
 
   const settingsNow = loadSettings();
-  const examMode = !!meta && settingsNow.examMode === "exam";
+  const solveMode = settingsNow.examMode || "basic";
+  const examMode = !!meta && solveMode === "exam";
   const startedAt = Date.now();
   let timerInterval = null;
-  let secondsLeft = list.length * 60; // 시험모드 기본: 문항당 1분
+  let secondsLeft = 50 * 60; // 시험모드: 과목당 50분 고정
 
   main.innerHTML = `
     <button class="backbtn" id="backBtn">${backLabel}</button>
@@ -39726,7 +39778,7 @@ function renderQuestionList(list, title, backFn, backLabel, meta) {
 
   // 이미 채점된 회차를 재방문했을 때는 revealed 상태를 복원한다(재도전 배지와 일관성 유지).
   let revealed = meta ? !!(loadAttempts()[attemptKey(meta.sourceType, meta.sourceId, meta.subject)] || {}).isGraded : false;
-  const immediateReveal = !examMode; // 연습모드: 채점 전에도 답을 고르면 즉시 정오답 공개
+  const immediateReveal = !!meta && solveMode === "practice"; // 연습모드에서만 채점 전 즉시 정오답 공개(기본모드/시험모드는 채점 후 공개)
 
   function bindPills() {
     const pillRow = document.getElementById("pillRow");
@@ -39794,7 +39846,7 @@ function renderQuestionList(list, title, backFn, backLabel, meta) {
       clearCurrentAttempt(meta.sourceType, meta.sourceId, meta.subject);
       clearAnswersFor(list);
       revealed = false;
-      secondsLeft = list.length * 60;
+      secondsLeft = 50 * 60;
       if (examMode) { if (timerInterval) clearInterval(timerInterval); timerInterval = setInterval(tickTimer, 1000); }
       refreshHistoryRow();
       drawList();
@@ -39923,16 +39975,45 @@ function renderReview() {
     return a !== undefined && q.answerIdx !== null && q.answerIdx !== undefined && !isCorrect(a, q.answerIdx);
   });
   const bookmarkList = QUESTIONS.filter(q => bookmarks[qid(q)]);
+
+  function groupByRound(list) {
+    const map = {};
+    list.forEach(q => { const key = q.round || "기타"; (map[key] = map[key] || []).push(q); });
+    return map;
+  }
+  function roundPillsHtml(list, attr) {
+    const groups = groupByRound(list);
+    const rounds = Object.keys(groups).sort((a, b) => roundSortKey(b) - roundSortKey(a));
+    if (!rounds.length) return `<div class="empty">문제가 없습니다.</div>`;
+    return `<div class="pillrow">${rounds.map(r => `<button class="pill" data-${attr}="${r}">${r} (${groups[r].length})</button>`).join("")}</div>`;
+  }
+
   main.innerHTML = `
     <h1>복습함</h1>
-    <p class="sub">틀린 문제와 저장한 문제를 모아 다시 풀어볼 수 있습니다.</p>
+    <p class="sub">틀린 문제와 저장한 문제를 모아 다시 풀어볼 수 있습니다. 회차 표기를 누르면 해당 회차의 문제만 볼 수 있습니다.</p>
     <div class="reviewCards">
-      <button class="reviewCard" id="wrongCard"><div class="v">${wrongList.length}</div><div class="l">틀린 문제</div></button>
-      <button class="reviewCard" id="bookmarkCard"><div class="v">${bookmarkList.length}</div><div class="l">저장한 문제</div></button>
+      <button class="reviewCard" id="wrongCard"><div class="v">${wrongList.length}</div><div class="l">틀린 문제 전체</div></button>
+      <button class="reviewCard" id="bookmarkCard"><div class="v">${bookmarkList.length}</div><div class="l">저장한 문제 전체</div></button>
     </div>
+    <p class="sub">회차별 틀린 문제</p>
+    ${roundPillsHtml(wrongList, "wronground")}
+    <p class="sub">회차별 저장한 문제</p>
+    ${roundPillsHtml(bookmarkList, "bmround")}
   `;
   document.getElementById("wrongCard").onclick = () => renderQuestionList(wrongList, "틀린 문제 복습", renderReview, "← 복습함", null);
   document.getElementById("bookmarkCard").onclick = () => renderQuestionList(bookmarkList, "저장한 문제 복습", renderReview, "← 복습함", null);
+  main.querySelectorAll("[data-wronground]").forEach(btn => {
+    btn.onclick = () => {
+      const r = btn.dataset.wronground;
+      renderQuestionList(wrongList.filter(q => q.round === r), `${r} · 틀린 문제`, renderReview, "← 복습함", null);
+    };
+  });
+  main.querySelectorAll("[data-bmround]").forEach(btn => {
+    btn.onclick = () => {
+      const r = btn.dataset.bmround;
+      renderQuestionList(bookmarkList.filter(q => q.round === r), `${r} · 저장한 문제`, renderReview, "← 복습함", null);
+    };
+  });
 }
 
 // ================= 4. 통계 =================
@@ -40021,10 +40102,10 @@ function drawStatBody(tab) {
 
 // ================= AI 문제풀이 (팝업 연동, API 과금 없음) =================
 const PROVIDER_CONFIG = {
-  chatgpt:    { name: "ChatGPT",    buildUrl: (q) => "https://chatgpt.com/?q=" + encodeURIComponent(q), prefill: true },
-  perplexity: { name: "Perplexity", buildUrl: (q) => "https://www.perplexity.ai/search?q=" + encodeURIComponent(q), prefill: true },
-  gemini:     { name: "Gemini",     buildUrl: () => "https://gemini.google.com/app", prefill: false },
-  claude:     { name: "Claude",     buildUrl: () => "https://claude.ai/new", prefill: false }
+  chatgpt: { name: "ChatGPT", buildUrl: (q) => "https://chatgpt.com/?q=" + encodeURIComponent(q), loginUrl: "https://chatgpt.com/", prefill: true },
+  gemini:  { name: "Gemini",  buildUrl: () => "https://gemini.google.com/app", loginUrl: "https://gemini.google.com/app", prefill: false },
+  claude:  { name: "Claude",  buildUrl: () => "https://claude.ai/new", loginUrl: "https://claude.ai/login", prefill: false },
+  grok:    { name: "Grok",    buildUrl: () => "https://grok.com/", loginUrl: "https://grok.com/", prefill: false }
 };
 
 function buildPrompt(q) {
@@ -40048,7 +40129,9 @@ async function openAIPopup(q, panelEl) {
 async function launchAIPopup(cfg, providerKey, q, panelEl) {
   const prompt = buildPrompt(q);
   // window.open은 클릭 이벤트의 동기 실행 체인 안에서 가장 먼저 호출해야 팝업 차단을 피할 수 있다.
-  // (이전 버전은 clipboard.writeText를 await한 뒤 window.open을 호출해 제스처 체인이 끊겼음)
+  // clipboard.writeText도 문서에 포커스가 남아있는 동안(=window.open 이전) 시작해야
+  // "Document is not focused" 오류 없이 안정적으로 동작한다. 두 호출 모두 await 없이 동기적으로 먼저 걸어둔다.
+  const clipboardPromise = cfg.prefill ? null : navigator.clipboard.writeText(prompt).then(() => true).catch(() => false);
   const win = window.open(cfg.buildUrl(prompt), "aiPopup", "width=480,height=720,noopener,noreferrer");
 
   saveSettings(Object.assign({}, loadSettings(), { lastProvider: providerKey }));
@@ -40072,12 +40155,10 @@ async function launchAIPopup(cfg, providerKey, q, panelEl) {
   }
   textEl.textContent = cfg.name + " 팝업을 열었습니다. 질문을 클립보드에 복사하는 중...";
   panelEl.appendChild(textEl);
-  try {
-    await navigator.clipboard.writeText(prompt);
-    textEl.textContent = "질문이 클립보드에 복사되었습니다. " + cfg.name + " 팝업 창의 입력창에 붙여넣기(Ctrl+V) 해주세요.";
-  } catch (e) {
-    textEl.textContent = cfg.name + " 팝업을 열었습니다. 클립보드 복사는 실패했으니 문제 내용을 직접 입력해주세요.";
-  }
+  const copied = await clipboardPromise;
+  textEl.textContent = copied
+    ? "질문이 클립보드에 복사되었습니다. " + cfg.name + " 팝업 창의 입력창에 붙여넣기(Ctrl+V) 해주세요."
+    : cfg.name + " 팝업을 열었습니다. 클립보드 복사는 실패했으니 문제 내용을 직접 입력해주세요.";
 }
 
 // ================= 설정 =================
@@ -40090,28 +40171,37 @@ function renderSettings() {
     <div class="settingsbox">
       <div class="field">
         <label>연결할 AI 서비스</label>
-        <select id="setProvider">
-          <option value="chatgpt">ChatGPT (질문 자동입력 지원)</option>
-          <option value="perplexity">Perplexity (질문 자동입력 지원)</option>
-          <option value="gemini">Gemini (붙여넣기 필요)</option>
-          <option value="claude">Claude (붙여넣기 필요)</option>
-        </select>
-        <div class="hint">[AI 문제풀이]를 누르면 이 서비스가 팝업으로 열리고, 문제 내용은 자동으로 클립보드에 복사됩니다. 해당 서비스에 미리 로그인되어 있어야 합니다. 팝업이 차단되면 재시도 버튼이 나타납니다.</div>
+        <div style="display:flex; gap:8px; align-items:center;">
+          <select id="setProvider" style="flex:1;">
+            <option value="chatgpt">ChatGPT (질문 자동입력 지원)</option>
+            <option value="gemini">Gemini (붙여넣기 필요)</option>
+            <option value="claude">Claude (붙여넣기 필요)</option>
+            <option value="grok">Grok (붙여넣기 필요)</option>
+          </select>
+          <button type="button" class="aibtn" id="setProviderLoginBtn">로그인 페이지 열기</button>
+        </div>
+        <div class="hint">[AI 문제풀이]를 누르면 이 서비스가 팝업으로 열리고, 문제 내용은 자동으로 클립보드에 복사됩니다. 해당 서비스에 미리 로그인되어 있어야 합니다. 팝업이 차단되면 재시도 버튼이 나타납니다. 처음 사용하는 서비스는 [로그인 페이지 열기]로 먼저 로그인해두세요.</div>
       </div>
       <div class="field">
         <label>풀이 모드</label>
         <select id="setExamMode">
+          <option value="basic">기본모드 — 채점하기를 눌러야 정오답이 표시됩니다 (처음 접속 시 기본값)</option>
           <option value="practice">연습모드 — 답을 고르면 바로 정오답이 표시됩니다</option>
-          <option value="exam">시험모드 — 제한시간이 표시되고, 채점하기 전까지 정오답을 숨깁니다</option>
+          <option value="exam">시험모드 — 과목당 50분 제한시간이 표시되고, 채점하기 전까지 정오답을 숨깁니다</option>
         </select>
-        <div class="hint">시험모드는 문항당 1분 기준 제한시간을 두고, 채점하기를 눌러야만 결과가 공개됩니다. 시간이 다 되면 자동으로 채점됩니다.</div>
+        <div class="hint">시험모드는 과목당 50분 제한시간을 두고, 채점하기를 눌러야만 결과가 공개됩니다. 시간이 다 되면 자동으로 채점됩니다.</div>
       </div>
       <button class="savebtn" id="saveBtn">저장</button>
       <span class="savedmsg" id="savedMsg">저장되었습니다 ✓</span>
     </div>
   `;
   document.getElementById("setProvider").value = s.lastProvider || s.provider || "chatgpt";
-  document.getElementById("setExamMode").value = s.examMode || "practice";
+  document.getElementById("setExamMode").value = s.examMode || "basic";
+  document.getElementById("setProviderLoginBtn").onclick = () => {
+    const val = document.getElementById("setProvider").value;
+    const cfg = PROVIDER_CONFIG[val];
+    if (cfg) window.open(cfg.loginUrl, "aiLogin");
+  };
   document.getElementById("saveBtn").onclick = () => {
     const val = document.getElementById("setProvider").value;
     const mode = document.getElementById("setExamMode").value;
@@ -40161,10 +40251,10 @@ async function renderAdmin() {
 
   main.innerHTML = `
     <h1>관리자 모드</h1>
-    <p class="sub">접속키 발급 및 이메일 배포를 관리합니다.</p>
+    <p class="sub">접속키 발급 및 이메일 배포를 관리합니다. 1차키는 1개, 2차키는 기기별(PC/노트북/휴대폰) 3개가 함께 발급됩니다.</p>
     <div class="settingsbox">
       <div class="field">
-        <label>키 일괄 생성</label>
+        <label>키 일괄 생성 (레거시 단일키 방식 — 1차/2차 구분 없이 단독으로 사용 가능)</label>
         <div style="display:flex; gap:8px;">
           <input type="number" id="adminCreateCount" placeholder="개수" value="10" style="width:80px;">
           <input type="number" id="adminCreateExpiry" placeholder="유효기간(일, 비우면 무제한)" style="flex:1;">
@@ -40172,7 +40262,7 @@ async function renderAdmin() {
         </div>
       </div>
       <div class="field">
-        <label>이메일로 배포</label>
+        <label>이메일로 배포 (1차키 1개 + 2차키 3개)</label>
         <div style="display:flex; gap:8px; flex-wrap:wrap;">
           <input type="text" id="adminInviteName" placeholder="이름" style="flex:1;">
           <input type="email" id="adminInviteEmail" placeholder="이메일주소" style="flex:2;">
@@ -40180,9 +40270,81 @@ async function renderAdmin() {
         </div>
         <div class="hint" id="adminInviteResult"></div>
       </div>
+      <div class="field">
+        <label>키 초기화</label>
+        <div id="adminResetAllWrap" style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+          <button class="resetbtn" id="adminResetAllBtn">모든 키 초기화</button>
+          <span class="hint">발급된 모든 키가 영구 삭제됩니다. 되돌릴 수 없습니다.</span>
+        </div>
+      </div>
+    </div>
+    <div class="statTabs" id="adminKeyTabs">
+      <button class="statTab active" data-tab="primary">1차키</button>
+      <button class="statTab" data-tab="secondary">2차키</button>
     </div>
     <div id="adminKeyListWrap"><div class="empty">불러오는 중...</div></div>
   `;
+
+  let adminActiveTab = "primary";
+  let adminRowsCache = [];
+
+  document.getElementById("adminKeyTabs").querySelectorAll(".statTab").forEach(tab => {
+    tab.onclick = () => {
+      adminActiveTab = tab.dataset.tab;
+      document.getElementById("adminKeyTabs").querySelectorAll(".statTab").forEach(t => t.classList.toggle("active", t === tab));
+      renderAdminKeyTable();
+    };
+  });
+
+  function renderAdminKeyTable() {
+    const wrap = document.getElementById("adminKeyListWrap");
+    const isSecondary = adminActiveTab === "secondary";
+    const rows = adminRowsCache
+      .filter(r => isSecondary ? r.type === "secondary" : (r.type === "primary" || !r.type))
+      .slice()
+      .sort((a, b) => (b.issuedDate || "").localeCompare(a.issuedDate || ""));
+    const colCount = isSecondary ? 9 : 7;
+    wrap.innerHTML = `
+      <table class="stattable"><thead><tr>
+        <th>키</th>${isSecondary ? "<th>기기</th><th>소속 1차키</th>" : ""}<th>상태</th><th>발급일</th><th>만료일</th><th>이름</th><th>이메일</th><th>사용일시</th><th></th>
+      </tr></thead><tbody>
+        ${rows.map(r => `<tr>
+          <td>${r.key}</td>
+          ${isSecondary ? `<td>${r.deviceLabel || "-"}</td><td>${r.parentKey || "-"}</td>` : ""}
+          <td>${r.status === "active" ? "활성" : r.status === "suspended" ? "사용중지" : "삭제됨"}</td>
+          <td>${r.issuedDate ? new Date(r.issuedDate).toLocaleDateString("ko-KR") : "-"}</td>
+          <td>${r.expiryDate ? new Date(r.expiryDate).toLocaleDateString("ko-KR") : "-"}</td>
+          <td>${r.assignedName || "-"}</td><td>${r.assignedEmail || "-"}</td>
+          <td>${r.usedDate ? new Date(r.usedDate).toLocaleString("ko-KR") : "-"}</td>
+          <td>
+            ${r.status !== "revoked" ? `<button class="aibtn" data-suspend="${r.key}">${r.status === "suspended" ? "재개" : "사용중지"}</button> <button class="resetbtn" data-delete="${r.key}">삭제</button>` : ""}
+          </td>
+        </tr>`).join("") || `<tr><td colspan="${colCount}" class="empty">발급된 키가 없습니다.</td></tr>`}
+      </tbody></table>
+    `;
+    wrap.querySelectorAll("button[data-suspend]").forEach(btn => {
+      btn.onclick = async () => {
+        const data = await adminApi("adminSuspendKey", { key: btn.dataset.suspend });
+        if (data.ok) refreshAdminKeyList(); else alert("처리 실패: " + data.reason);
+      };
+    });
+    // 삭제는 실수 방지를 위해 두 번 클릭해야 실행된다(첫 클릭 3초 내 재클릭 시에만 삭제).
+    wrap.querySelectorAll("button[data-delete]").forEach(btn => {
+      btn.onclick = () => {
+        if (btn.dataset.armed === "1") {
+          btn.disabled = true;
+          adminApi("adminDeleteKey", { key: btn.dataset.delete }).then(data => {
+            if (data.ok) refreshAdminKeyList(); else { alert("삭제 실패: " + data.reason); btn.disabled = false; }
+          });
+          return;
+        }
+        btn.dataset.armed = "1";
+        btn.textContent = "정말 삭제?";
+        btn.classList.add("active");
+        setTimeout(() => { if (btn.isConnected) { btn.dataset.armed = "0"; btn.textContent = "삭제"; btn.classList.remove("active"); } }, 3000);
+      };
+    });
+  }
 
   document.getElementById("adminCreateBtn").onclick = async () => {
     const count = document.getElementById("adminCreateCount").value || 1;
@@ -40198,12 +40360,13 @@ async function renderAdmin() {
     if (!email) { alert("이메일을 입력해주세요."); return; }
     const resultEl = document.getElementById("adminInviteResult");
     resultEl.textContent = "발송 중...";
-    const data = await adminApi("adminSendInvite", { name, email, baseUrl: location.origin + location.pathname });
+    const data = await adminApi("adminCreateInvite", { name, email, baseUrl: location.origin + location.pathname });
     if (data.ok) {
-      resultEl.innerHTML = "발송 완료. 배포용 주소: <b>" + data.url + "</b> ";
+      const summary = "1차: " + data.primaryKey + " / 2차 PC: " + data.secondaryKeys["PC"] + " / 노트북: " + data.secondaryKeys["노트북"] + " / 휴대폰: " + data.secondaryKeys["휴대폰"];
+      resultEl.innerHTML = "발송 완료. " + summary + " ";
       const copyBtn = document.createElement("button");
-      copyBtn.className = "aibtn"; copyBtn.textContent = "복사";
-      copyBtn.onclick = () => { navigator.clipboard.writeText(data.url).catch(() => {}); };
+      copyBtn.className = "aibtn"; copyBtn.textContent = "전체 복사";
+      copyBtn.onclick = () => { navigator.clipboard.writeText(summary + " / 주소: " + data.url).catch(() => {}); };
       resultEl.appendChild(copyBtn);
       document.getElementById("adminInviteName").value = "";
       document.getElementById("adminInviteEmail").value = "";
@@ -40213,36 +40376,40 @@ async function renderAdmin() {
     }
   };
 
-  refreshAdminKeyList();
-}
-
-async function refreshAdminKeyList() {
-  const wrap = document.getElementById("adminKeyListWrap");
-  const data = await adminApi("adminList");
-  if (!data.ok) { wrap.innerHTML = `<div class="empty">불러오기 실패: ${data.reason}</div>`; return; }
-  const rows = data.rows.slice().sort((a, b) => (b.issuedDate || "").localeCompare(a.issuedDate || ""));
-  wrap.innerHTML = `
-    <table class="stattable"><thead><tr><th>키</th><th>상태</th><th>발급일</th><th>만료일</th><th>이름</th><th>이메일</th><th>사용일시</th><th></th></tr></thead><tbody>
-      ${rows.map(r => `<tr>
-        <td>${r.key}</td><td>${r.status}</td>
-        <td>${r.issuedDate ? new Date(r.issuedDate).toLocaleDateString("ko-KR") : "-"}</td>
-        <td>${r.expiryDate ? new Date(r.expiryDate).toLocaleDateString("ko-KR") : "-"}</td>
-        <td>${r.assignedName || "-"}</td><td>${r.assignedEmail || "-"}</td>
-        <td>${r.usedDate ? new Date(r.usedDate).toLocaleString("ko-KR") : "-"}</td>
-        <td>${r.status === "active" ? `<button class="resetbtn" data-key="${r.key}">삭제</button>` : ""}</td>
-      </tr>`).join("") || `<tr><td colspan="8" class="empty">발급된 키가 없습니다.</td></tr>`}
-    </tbody></table>
-  `;
-  wrap.querySelectorAll("button[data-key]").forEach(btn => {
-    btn.onclick = async () => {
-      const data = await adminApi("adminDeleteKey", { key: btn.dataset.key });
-      if (data.ok) refreshAdminKeyList(); else alert("삭제 실패: " + data.reason);
+  // 키 초기화는 매우 파괴적이므로 "초기화"를 정확히 입력해야만 실행 버튼이 활성화된다.
+  document.getElementById("adminResetAllBtn").onclick = () => {
+    const wrap = document.getElementById("adminResetAllWrap");
+    wrap.innerHTML = `
+      <input type="text" id="adminResetConfirmInput" placeholder='"초기화" 입력 후 확인' style="flex:1; min-width:180px;">
+      <button class="resetbtn" id="adminResetConfirmBtn" disabled>확인</button>
+      <button class="aibtn" id="adminResetCancelBtn">취소</button>
+      <span class="hint">모든 키가 영구 삭제됩니다. 확인하려면 "초기화"를 정확히 입력하세요.</span>
+    `;
+    const input = document.getElementById("adminResetConfirmInput");
+    const confirmBtn = document.getElementById("adminResetConfirmBtn");
+    input.addEventListener("input", () => { confirmBtn.disabled = input.value.trim() !== "초기화"; });
+    document.getElementById("adminResetCancelBtn").onclick = () => renderAdmin();
+    confirmBtn.onclick = async () => {
+      confirmBtn.disabled = true; confirmBtn.textContent = "처리 중...";
+      const data = await adminApi("adminResetAll");
+      if (data.ok) renderAdmin(); else { alert("초기화 실패: " + data.reason); confirmBtn.disabled = false; confirmBtn.textContent = "확인"; }
     };
-  });
+  };
+
+  async function refreshAdminKeyList() {
+    const wrap = document.getElementById("adminKeyListWrap");
+    const data = await adminApi("adminList");
+    if (!data.ok) { wrap.innerHTML = `<div class="empty">불러오기 실패: ${data.reason}</div>`; return; }
+    adminRowsCache = data.rows;
+    renderAdminKeyTable();
+  }
+
+  refreshAdminKeyList();
 }
 
 document.getElementById("gateSubmit").onclick = () => tryRedeem();
 document.getElementById("gateInput").addEventListener("keydown", (e) => { if (e.key === "Enter") tryRedeem(); });
+document.getElementById("gateInput2").addEventListener("keydown", (e) => { if (e.key === "Enter") tryRedeem(); });
 document.querySelectorAll(".navbtn").forEach(b => b.onclick = () => switchNav(b.dataset.nav));
 
 const urlParams = new URLSearchParams(location.search);
@@ -40263,6 +40430,7 @@ if (urlParams.get("admin") === "1") {
   } else if (!isUnlocked()) {
     showGate();
   } else {
+    startSessionHeartbeat();
     switchNav("round");
   }
 }
