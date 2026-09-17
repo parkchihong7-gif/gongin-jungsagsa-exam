@@ -39958,7 +39958,7 @@ function renderQuestionList(list, title, backFn, backLabel, meta) {
     qlist.innerHTML = "";
     const kw = (document.getElementById("qSearch").value || "").trim();
     let filtered = list;
-    if (kw) filtered = list.filter(q => String(q.num).includes(kw) || q.text.includes(kw) || q.subject.includes(kw));
+    if (kw) filtered = list.filter(q => String(q.num).includes(kw) || q.text.includes(kw) || q.subject.includes(kw) || q.opts.some(o => o.includes(kw)));
     if (filtered.length === 0) { qlist.innerHTML = `<div class="empty">검색 결과가 없습니다.</div>`; return; }
 
     filtered.forEach(q => {
