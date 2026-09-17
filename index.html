@@ -39397,6 +39397,9 @@ function archiveCurrentAttempt(list, meta) {
   const key = attemptKey(meta.sourceType, meta.sourceId, meta.subject);
   const current = loadAttempts()[key];
   if (!current || !current.isGraded) return null;
+  // 40문항을 모두 풀고 채점까지 마친 완주 기록만 [1회차]/[2회차]로 남긴다.
+  // 일부만 풀고 채점한 뒤 리셋한 경우는 기록을 남기지 않고 조용히 초기화한다.
+  if (current.answeredCount < current.totalQuestions) return null;
   const answers = loadAnswers();
   const snapshot = {};
   list.forEach(q => { const id = qid(q); if (answers[id] !== undefined) snapshot[id] = answers[id]; });
