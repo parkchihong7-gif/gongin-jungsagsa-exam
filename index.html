@@ -39340,8 +39340,36 @@ const CHA_SUBJECTS = {
   "2차": ["공인중개사법령 및 중개실무", "부동산공법", "부동산공시에 관한 법령 및 부동산세법"]
 };
 
-// 접속키 검증/발급/관리는 이 Apps Script 백엔드(Google Sheet DB)를 통해 처리됩니다.
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwGmRMfzsP_YIYFFJeUuFSBtBU2ruK9k_E4EvdOQtjVgVDOYdzWg8ZVoA1gFtE2KWzp/exec";
+// 접속키 검증은 Apps Script 백엔드(Google Sheet 장부)가 합니다.
+//
+// **두 곳을 봅니다.** 통합 관리자 대시보드가 키를 적는 곳이 옮겨졌는데,
+// 옛 장부에 이미 팔아 놓은 키가 있는지 알 수 없었습니다. 한쪽만 보게 하면
+// 어느 쪽이든 쓰시던 분이 잠깁니다. 그래서 **새 곳을 먼저 보고, 없으면 옛
+// 곳을 봅니다.** 옛 장부가 비어 있는 것이 확인되면 아래 두 번째 줄을
+// 지우시면 됩니다.
+//
+// 이 주소가 공개되는 것은 괜찮습니다. 여는 것은 키이지 주소가 아니고,
+// 서버가 키 틀린 횟수를 세어 막습니다. 관리자 기능은 주인 비밀번호를
+// 따로 받습니다.
+const KEY_SERVERS = [
+  { url: "https://script.google.com/macros/s/AKfycbyzVWu2yA0SrhPjy2i4_VHD22Ng3Qf6Beudxi_3kpYpGPNr8beYDkYrExUSvkQk75KVgg/exec",
+    program: "exam-drill" },
+  { url: "https://script.google.com/macros/s/AKfycbwGmRMfzsP_YIYFFJeUuFSBtBU2ruK9k_E4EvdOQtjVgVDOYdzWg8ZVoA1gFtE2KWzp/exec",
+    program: "" },
+];
+
+/** 지금 이 기기를 들여보낸 곳. 세션 확인도 **같은 곳**에 물어야 한다. */
+function keyServer() {
+  var n = parseInt(localStorage.getItem("examServer") || "0", 10);
+  return KEY_SERVERS[n] || KEY_SERVERS[0];
+}
+
+/** 서버 한 곳에 묻는다. 주소 뒤에 붙일 것들을 만들어 준다. */
+function keyServerUrl(server, params) {
+  const qs = new URLSearchParams(params);
+  if (server.program) { qs.set("program", server.program); }
+  return server.url + "?" + qs.toString();
+}
 
 const ROUND_LIST = (() => {
   const list = [];
@@ -39478,7 +39506,8 @@ function startSessionHeartbeat() {
   if (sessionHeartbeatInterval) clearInterval(sessionHeartbeatInterval);
   const check = async () => {
     try {
-      const res = await fetch(APPS_SCRIPT_URL + "?action=checkSession&key=" + encodeURIComponent(key2) + "&sessionToken=" + encodeURIComponent(token));
+      const res = await fetch(keyServerUrl(keyServer(),
+        { action: "checkSession", key: key2, sessionToken: token }));
       const data = await res.json();
       if (!data.ok && data.reason === "session_replaced") {
         lockOut("다른 기기에서 로그인되어 세션이 종료되었습니다.");
@@ -39496,19 +39525,31 @@ async function tryRedeem(codeOverride, code2Override) {
   const code2 = (code2Override || input2.value || "").trim().toUpperCase();
   if (!code) { msg.textContent = "1차 인증키를 입력해주세요."; return; }
   msg.textContent = "확인 중...";
-  let data;
-  try {
-    const qs = new URLSearchParams({ action: "validateKeyPair", key1: code });
-    if (code2) qs.set("key2", code2);
-    const res = await fetch(APPS_SCRIPT_URL + "?" + qs.toString());
-    data = await res.json();
-  } catch (e) {
+  // 새 장부를 먼저, 없으면 옛 장부를. "못 찾았다" 일 때만 다음 곳으로
+  // 넘어간다 — 키가 정지됐거나 짝이 안 맞는 것은 **찾긴 찾은 것**이므로
+  // 그 자리에서 그대로 알려 줘야 한다. 넘어가면 "없는 키" 로 둔갑한다.
+  const 넘어갈이유 = ["not_found", "secondary_not_found"];
+  let data = null, 서버번호 = 0, 닿은곳 = 0;
+  for (let n = 0; n < KEY_SERVERS.length; n++) {
+    let 답;
+    try {
+      const res = await fetch(keyServerUrl(KEY_SERVERS[n],
+        code2 ? { action: "validateKeyPair", key1: code, key2: code2 }
+              : { action: "validateKeyPair", key1: code }));
+      답 = await res.json();
+      닿은곳++;
+    } catch (e) { continue; }          // 그 곳이 안 열리면 다음 곳
+    data = 답; 서버번호 = n;
+    if (답.ok || 넘어갈이유.indexOf(답.reason) === -1) { break; }
+  }
+  if (!닿은곳) {
     msg.textContent = "인증 서버에 연결할 수 없습니다. 인터넷 연결을 확인한 뒤 다시 시도해주세요.";
     return;
   }
   if (data.ok) {
     localStorage.setItem("examUnlocked", "1");
     localStorage.setItem("examKey", code);
+    localStorage.setItem("examServer", String(서버번호));
     if (data.sessionToken) {
       localStorage.setItem("examKey2", code2);
       localStorage.setItem("examSessionToken", data.sessionToken);
@@ -40343,9 +40384,12 @@ function loadAdminToken() { return sessionStorage.getItem("examAdminToken") || "
 function saveAdminToken(t) { sessionStorage.setItem("examAdminToken", t); }
 
 async function adminApi(action, params) {
+  // 관리자 일(키 발급·정지·삭제)은 **새 장부에만** 한다. 통합 관리자
+  // 대시보드가 적는 곳과 같은 곳이어야 양쪽에서 같은 목록이 보인다.
+  // 옛 장부는 이미 팔린 키를 들여보내 주기만 하는 곳이다.
   const token = loadAdminToken();
-  const qs = new URLSearchParams(Object.assign({ action, token }, params || {}));
-  const res = await fetch(APPS_SCRIPT_URL + "?" + qs.toString());
+  const res = await fetch(keyServerUrl(KEY_SERVERS[0],
+    Object.assign({ action, token }, params || {})));
   return res.json();
 }
 
