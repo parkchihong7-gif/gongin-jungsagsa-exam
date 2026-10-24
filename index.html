@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>공인중개사 기출문제</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center; font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",Pretendard,"Malgun Gothic",sans-serif; background:#f7f8fa; color:#14161a; }
+  @media (prefers-color-scheme: dark) { body { background:#0f1216; color:#f2f4f7; } .box { background:#161a20; border-color:#2a303a; } input[type=password] { background:#161a20; color:#f2f4f7; border-color:#2a303a; } }
+  .box { background:#fff; border:1px solid #e4e7ec; border-radius:12px; padding:28px 32px; width:100%; max-width:360px; text-align:center; margin:16px; }
+  h1 { font-size:18px; margin:0 0 6px; } p { font-size:13px; color:#8b93a1; margin:0 0 14px; }
+  input[type=password] { width:100%; box-sizing:border-box; padding:11px 12px; border-radius:8px; border:1px solid #e4e7ec; font-size:16px; text-align:center; }
+  button { width:100%; margin-top:10px; padding:11px; border-radius:8px; border:1px solid #1f5eff; background:#1f5eff; color:#fff; font-size:15px; font-weight:700; cursor:pointer; }
+  label { display:block; font-size:12px; color:#8b93a1; margin-top:10px; }
+  #msg { min-height:18px; margin-top:10px; font-size:13px; color:#c1341f; }
+  #wait { font-size:14px; color:#8b93a1; }
+</style>
+</head>
+<body>
+<div id="wait">불러오는 중...</div>
+<form class="box" id="f" autocomplete="off" style="display:none">
+  <h1>관리자 모드</h1>
+  <p>관리자 비밀번호를 입력하세요.</p>
+  <input type="password" id="pw" placeholder="비밀번호">
+  <label><input type="checkbox" id="rem" checked> 이 기기에서 기억하기</label>
+  <button type="submit">확인</button>
+  <div id="msg"></div>
+</form>
+<script>
+const CFG = { salt: "OrCGMHeriSh+q9/RwrcUog==", iter: 1000000, vA: "b496369f4b1a", vS: "648d035e8eeb", sales: "p4vUKE0wuu09NLnyV8oS0Ha+hroWWEg073r1JAEyIBw=" };
+const SKEY = "siteKey_" + CFG.salt.slice(0, 8);
+const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+const msg = t => { document.getElementById("msg").textContent = t || ""; };
+async function openBundle(file, ver, key) {
+  const res = await fetch(file + "?v=" + ver, { cache: "no-cache" });
+  if (!res.ok) throw new Error("fetch");
+  const buf = new Uint8Array(await res.arrayBuffer());
+  const plain = await crypto.subtle.decrypt({ name: "AES-GCM", iv: buf.slice(0, 12) }, key, buf.slice(12));
+  const html = await new Response(new Blob([plain]).stream().pipeThrough(new DecompressionStream("gzip"))).text();
+  document.open(); document.write(html); document.close();
+}
+const rawKey = (b) => crypto.subtle.importKey("raw", b, "AES-GCM", false, ["decrypt"]);
+async function deriveKey(pw) {
+  const base = await crypto.subtle.importKey("raw", new TextEncoder().encode(pw), "PBKDF2", false, ["deriveKey"]);
+  return crypto.subtle.deriveKey({ name: "PBKDF2", salt: b64(CFG.salt), iterations: CFG.iter, hash: "SHA-256" }, base, { name: "AES-GCM", length: 256 }, true, ["decrypt"]);
+}
+function showForm() { document.getElementById("wait").style.display = "none"; document.getElementById("f").style.display = ""; document.getElementById("pw").focus(); }
+async function start() {
+  const admin = new URLSearchParams(location.search).get("admin") === "1";
+  if (!admin) {                       // 판매 모드: 앱 안의 1차·2차 인증키 화면으로 바로 진입
+    try { await openBundle("sales.enc", CFG.vS, await rawKey(b64(CFG.sales))); }
+    catch (e) { document.getElementById("wait").textContent = "불러오지 못했습니다. 새로고침해 주세요."; }
+    return;
+  }
+  let saved = null; try { saved = localStorage.getItem(SKEY); } catch (e) {}
+  if (saved) {
+    try { await openBundle("admin.enc", CFG.vA, await rawKey(b64(saved))); return; }
+    catch (e) { try { localStorage.removeItem(SKEY); } catch (e2) {} }
+  }
+  showForm();
+}
+document.getElementById("f").onsubmit = async (e) => {
+  e.preventDefault();
+  const pw = document.getElementById("pw").value;
+  if (!pw) { msg("비밀번호를 입력해주세요."); return; }
+  msg("확인 중...");
+  try {
+    const key = await deriveKey(pw);
+    if (document.getElementById("rem").checked) {
+      const raw = new Uint8Array(await crypto.subtle.exportKey("raw", key));
+      try { localStorage.setItem(SKEY, btoa(String.fromCharCode(...raw))); } catch (e2) {}
+    }
+    await openBundle("admin.enc", CFG.vA, key);
+  } catch (err) { try { localStorage.removeItem(SKEY); } catch (e2) {} msg("비밀번호가 올바르지 않습니다."); }
+};
+start();
+</script>
+</body>
+</html>
