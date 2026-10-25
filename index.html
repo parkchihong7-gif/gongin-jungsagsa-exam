@@ -38,7 +38,7 @@
   <div id="msg"></div>
 </form>
 <script>
-const CFG = { server: "https://script.google.com/macros/s/AKfycbyzVWu2yA0SrhPjy2i4_VHD22Ng3Qf6Beudxi_3kpYpGPNr8beYDkYrExUSvkQk75KVgg/exec", program: "exam-drill", salt: "OrCGMHeriSh+q9/RwrcUog==", iter: 1000000, vA: "4aacfc382257", vS: "780fc692babc", sales: "p4vUKE0wuu09NLnyV8oS0Ha+hroWWEg073r1JAEyIBw=" };
+const CFG = { server: "https://script.google.com/macros/s/AKfycbyzVWu2yA0SrhPjy2i4_VHD22Ng3Qf6Beudxi_3kpYpGPNr8beYDkYrExUSvkQk75KVgg/exec", program: "exam-drill", salt: "OrCGMHeriSh+q9/RwrcUog==", iter: 1000000, vA: "3e26a3efe1b2", vS: "f6b4dd4a02e7", sales: "p4vUKE0wuu09NLnyV8oS0Ha+hroWWEg073r1JAEyIBw=" };
 const SKEY = "siteKey_" + CFG.salt.slice(0, 8);
 const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
 const msg = t => { document.getElementById("msg").textContent = t || ""; };
@@ -60,8 +60,12 @@ async function start() {
   const admin = new URLSearchParams(location.search).get("admin") === "1";
   if (!admin) {
     // 판매 모드: 인증키 검증 후 서버가 내려준 열쇠(contentKey)로 판매 번들을 연다.
-    let unlocked = false, cached = null;
-    try { unlocked = localStorage.getItem("examUnlocked") === "1"; cached = localStorage.getItem("examContentKey"); } catch (e) {}
+    let unlocked = false, cached = null, adminSaved = null;
+    try { unlocked = localStorage.getItem("examUnlocked") === "1"; cached = localStorage.getItem("examContentKey"); adminSaved = localStorage.getItem(SKEY); } catch (e) {}
+    if (adminSaved) {   // 이 기기에서 관리자로 로그인한 적이 있으면 관리자 번들을 바로 연다
+      try { await openBundle("admin.enc", CFG.vA, await rawKey(b64(adminSaved))); return; }
+      catch (e) { try { localStorage.removeItem(SKEY); } catch (e2) {} }
+    }
     if (unlocked) {   // 이미 로그인된 기기: 캐시된 열쇠(없으면 전환 기간용 임시 열쇠)로 바로 열기
       try { await openBundle("sales.enc", CFG.vS, await rawKey(b64(cached || CFG.sales))); return; }
       catch (e) { try { localStorage.removeItem("examContentKey"); } catch (e2) {} }
@@ -86,10 +90,19 @@ const REASONS = {
 document.getElementById("sf").onsubmit = async (e) => {
   e.preventDefault();
   const smsg = (t) => { document.getElementById("smsg").textContent = t || ""; };
-  const code = (document.getElementById("k1").value || "").trim().toUpperCase();
+  const raw1 = (document.getElementById("k1").value || "").trim();
+  const code = raw1.toUpperCase();
   const code2 = (document.getElementById("k2").value || "").trim().toUpperCase();
   if (!code) { smsg("1차 인증키를 입력해주세요."); return; }
   smsg("확인 중...");
+  if (!/^[A-Z0-9]{4}(-[A-Z0-9]{4}){2}$/.test(code)) {   // 인증키 형식(XXXX-XXXX-XXXX)이 아니면 관리자 비밀번호로 시도
+    try {
+      const akey = await deriveKey(raw1);
+      const araw = new Uint8Array(await crypto.subtle.exportKey("raw", akey));
+      await openBundleAdmin(akey, () => { try { localStorage.setItem(SKEY, btoa(String.fromCharCode(...araw))); } catch (e2) {} });
+    } catch (err) { smsg(REASONS.not_found); }
+    return;
+  }
   let data;
   try {
     const qs = new URLSearchParams({ action: "validateKeyPair", program: CFG.program, key1: code });
@@ -107,6 +120,15 @@ document.getElementById("sf").onsubmit = async (e) => {
     });
   } catch (err) { smsg("앱을 열지 못했습니다. 잠시 후 다시 시도해주세요."); }
 };
+async function openBundleAdmin(key, beforeWrite) {
+  const res = await fetch("admin.enc?v=" + CFG.vA, { cache: "no-cache" });
+  if (!res.ok) throw new Error("fetch");
+  const buf = new Uint8Array(await res.arrayBuffer());
+  const plain = await crypto.subtle.decrypt({ name: "AES-GCM", iv: buf.slice(0, 12) }, key, buf.slice(12));
+  const html = await new Response(new Blob([plain]).stream().pipeThrough(new DecompressionStream("gzip"))).text();
+  beforeWrite();
+  document.open(); document.write(html); document.close();
+}
 async function openBundleWith(keyB64, beforeWrite) {
   const res = await fetch("sales.enc?v=" + CFG.vS, { cache: "no-cache" });
   if (!res.ok) throw new Error("fetch");
