@@ -8,18 +8,27 @@
 <style>
   :root { color-scheme: light dark; }
   body { margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center; font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",Pretendard,"Malgun Gothic",sans-serif; background:#f7f8fa; color:#14161a; }
-  @media (prefers-color-scheme: dark) { body { background:#0f1216; color:#f2f4f7; } .box { background:#161a20; border-color:#2a303a; } input[type=password] { background:#161a20; color:#f2f4f7; border-color:#2a303a; } }
+  @media (prefers-color-scheme: dark) { body { background:#0f1216; color:#f2f4f7; } .box { background:#161a20; border-color:#2a303a; } input[type=password], input[type=text] { background:#161a20; color:#f2f4f7; border-color:#2a303a; } }
   .box { background:#fff; border:1px solid #e4e7ec; border-radius:12px; padding:28px 32px; width:100%; max-width:360px; text-align:center; margin:16px; }
   h1 { font-size:18px; margin:0 0 6px; } p { font-size:13px; color:#8b93a1; margin:0 0 14px; }
-  input[type=password] { width:100%; box-sizing:border-box; padding:11px 12px; border-radius:8px; border:1px solid #e4e7ec; font-size:16px; text-align:center; }
+  input[type=password], input[type=text] { width:100%; margin-top:8px; box-sizing:border-box; padding:11px 12px; border-radius:8px; border:1px solid #e4e7ec; font-size:16px; text-align:center; }
   button { width:100%; margin-top:10px; padding:11px; border-radius:8px; border:1px solid #1f5eff; background:#1f5eff; color:#fff; font-size:15px; font-weight:700; cursor:pointer; }
   label { display:block; font-size:12px; color:#8b93a1; margin-top:10px; }
+  #smsg { min-height:18px; margin-top:10px; font-size:13px; color:#c1341f; }
   #msg { min-height:18px; margin-top:10px; font-size:13px; color:#c1341f; }
   #wait { font-size:14px; color:#8b93a1; }
 </style>
 </head>
 <body>
 <div id="wait">불러오는 중...</div>
+<form class="box" id="sf" autocomplete="off" style="display:none">
+  <h1>인증코드 입력</h1>
+  <p>1차 인증키와 2차 인증키를 입력하세요.</p>
+  <input type="text" id="k1" placeholder="1차 인증키" autocomplete="off">
+  <input type="text" id="k2" placeholder="2차 인증키 (PC/노트북/휴대폰 중 이 기기용)" autocomplete="off">
+  <button type="submit">확인</button>
+  <div id="smsg"></div>
+</form>
 <form class="box" id="f" autocomplete="off" style="display:none">
   <h1>관리자 모드</h1>
   <p>관리자 비밀번호를 입력하세요.</p>
@@ -29,7 +38,7 @@
   <div id="msg"></div>
 </form>
 <script>
-const CFG = { salt: "OrCGMHeriSh+q9/RwrcUog==", iter: 1000000, vA: "718b3d641906", vS: "dc23bdbe945b", sales: "p4vUKE0wuu09NLnyV8oS0Ha+hroWWEg073r1JAEyIBw=" };
+const CFG = { server: "https://script.google.com/macros/s/AKfycbyzVWu2yA0SrhPjy2i4_VHD22Ng3Qf6Beudxi_3kpYpGPNr8beYDkYrExUSvkQk75KVgg/exec", program: "exam-drill", salt: "OrCGMHeriSh+q9/RwrcUog==", iter: 1000000, vA: "63d4fa641c43", vS: "03284ae3f4af", sales: "p4vUKE0wuu09NLnyV8oS0Ha+hroWWEg073r1JAEyIBw=" };
 const SKEY = "siteKey_" + CFG.salt.slice(0, 8);
 const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
 const msg = t => { document.getElementById("msg").textContent = t || ""; };
@@ -49,9 +58,16 @@ async function deriveKey(pw) {
 function showForm() { document.getElementById("wait").style.display = "none"; document.getElementById("f").style.display = ""; document.getElementById("pw").focus(); }
 async function start() {
   const admin = new URLSearchParams(location.search).get("admin") === "1";
-  if (!admin) {                       // 판매 모드: 앱 안의 1차·2차 인증키 화면으로 바로 진입
-    try { await openBundle("sales.enc", CFG.vS, await rawKey(b64(CFG.sales))); }
-    catch (e) { document.getElementById("wait").textContent = "불러오지 못했습니다. 새로고침해 주세요."; }
+  if (!admin) {
+    // 판매 모드: 인증키 검증 후 서버가 내려준 열쇠(contentKey)로 판매 번들을 연다.
+    let unlocked = false, cached = null;
+    try { unlocked = localStorage.getItem("examUnlocked") === "1"; cached = localStorage.getItem("examContentKey"); } catch (e) {}
+    if (unlocked) {   // 이미 로그인된 기기: 캐시된 열쇠(없으면 전환 기간용 임시 열쇠)로 바로 열기
+      try { await openBundle("sales.enc", CFG.vS, await rawKey(b64(cached || CFG.sales))); return; }
+      catch (e) { try { localStorage.removeItem("examContentKey"); } catch (e2) {} }
+    }
+    document.getElementById("wait").style.display = "none"; document.getElementById("sf").style.display = "";
+    document.getElementById("k1").focus();
     return;
   }
   let saved = null; try { saved = localStorage.getItem(SKEY); } catch (e) {}
@@ -60,6 +76,45 @@ async function start() {
     catch (e) { try { localStorage.removeItem(SKEY); } catch (e2) {} }
   }
   showForm();
+}
+const REASONS = {
+  no_primary: "1차 인증키를 입력해주세요.", no_secondary: "2차 인증키도 함께 입력해주세요.",
+  pair_mismatch: "1차 인증키와 2차 인증키의 조합이 올바르지 않습니다.", secondary_not_found: "1차 인증키와 2차 인증키의 조합이 올바르지 않습니다.",
+  suspended: "사용이 중지된 코드입니다. 관리자에게 문의해주세요.", not_found: "유효하지 않거나 만료된 코드입니다. 다시 확인해주세요.",
+  expired: "유효하지 않거나 만료된 코드입니다. 다시 확인해주세요.", too_many_attempts: "너무 여러 번 틀렸습니다. 10분 뒤에 다시 해 주세요."
+};
+document.getElementById("sf").onsubmit = async (e) => {
+  e.preventDefault();
+  const smsg = (t) => { document.getElementById("smsg").textContent = t || ""; };
+  const code = (document.getElementById("k1").value || "").trim().toUpperCase();
+  const code2 = (document.getElementById("k2").value || "").trim().toUpperCase();
+  if (!code) { smsg("1차 인증키를 입력해주세요."); return; }
+  smsg("확인 중...");
+  let data;
+  try {
+    const qs = new URLSearchParams({ action: "validateKeyPair", program: CFG.program, key1: code });
+    if (code2) qs.set("key2", code2);
+    data = await (await fetch(CFG.server + "?" + qs.toString())).json();
+  } catch (err) { smsg("인증 서버에 연결할 수 없습니다. 인터넷 연결을 확인한 뒤 다시 시도해주세요."); return; }
+  if (!data || !data.ok) { smsg((data && (REASONS[data.reason] || data.message)) || "유효하지 않거나 만료된 코드입니다. 다시 확인해주세요."); return; }
+  try {
+    const keyB64 = data.contentKey || CFG.sales;   // 서버가 열쇠를 주지 않는 전환 기간에는 임시 열쇠
+    await openBundleWith(keyB64, () => {
+      localStorage.setItem("examUnlocked", "1"); localStorage.setItem("examKey", code); localStorage.setItem("examServer", "0");
+      if (data.sessionToken) { localStorage.setItem("examKey2", code2); localStorage.setItem("examSessionToken", data.sessionToken); }
+      else { localStorage.removeItem("examKey2"); localStorage.removeItem("examSessionToken"); }
+      if (data.contentKey) localStorage.setItem("examContentKey", data.contentKey);
+    });
+  } catch (err) { smsg("앱을 열지 못했습니다. 잠시 후 다시 시도해주세요."); }
+};
+async function openBundleWith(keyB64, beforeWrite) {
+  const res = await fetch("sales.enc?v=" + CFG.vS, { cache: "no-cache" });
+  if (!res.ok) throw new Error("fetch");
+  const buf = new Uint8Array(await res.arrayBuffer());
+  const plain = await crypto.subtle.decrypt({ name: "AES-GCM", iv: buf.slice(0, 12) }, await rawKey(b64(keyB64)), buf.slice(12));
+  const html = await new Response(new Blob([plain]).stream().pipeThrough(new DecompressionStream("gzip"))).text();
+  beforeWrite();                       // 복호화에 성공한 뒤에만 로그인 상태를 저장한다
+  document.open(); document.write(html); document.close();
 }
 document.getElementById("f").onsubmit = async (e) => {
   e.preventDefault();
