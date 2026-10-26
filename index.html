@@ -38,7 +38,7 @@
   <div id="msg"></div>
 </form>
 <script>
-const CFG = { server: "https://script.google.com/macros/s/AKfycbyzVWu2yA0SrhPjy2i4_VHD22Ng3Qf6Beudxi_3kpYpGPNr8beYDkYrExUSvkQk75KVgg/exec", program: "exam-drill", salt: "OrCGMHeriSh+q9/RwrcUog==", iter: 1000000, vA: "581a9423721b", vS: "8f5aff817200", sales: "p4vUKE0wuu09NLnyV8oS0Ha+hroWWEg073r1JAEyIBw=" };
+const CFG = { server: "https://script.google.com/macros/s/AKfycbyzVWu2yA0SrhPjy2i4_VHD22Ng3Qf6Beudxi_3kpYpGPNr8beYDkYrExUSvkQk75KVgg/exec", program: "exam-drill", salt: "OrCGMHeriSh+q9/RwrcUog==", iter: 1000000, vA: "e85bbec161f4", vS: "c024ef1b248f", sales: "p4vUKE0wuu09NLnyV8oS0Ha+hroWWEg073r1JAEyIBw=" };
 const SKEY = "siteKey_" + CFG.salt.slice(0, 8);
 const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
 const msg = t => { document.getElementById("msg").textContent = t || ""; };
