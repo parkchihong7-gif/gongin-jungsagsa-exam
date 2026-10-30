@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="robots" content="noindex,nofollow">
 <title>공인중개사 기출문제</title>
 <style>
@@ -38,7 +38,7 @@
   <div id="msg"></div>
 </form>
 <script>
-const CFG = { server: "https://script.google.com/macros/s/AKfycbyzVWu2yA0SrhPjy2i4_VHD22Ng3Qf6Beudxi_3kpYpGPNr8beYDkYrExUSvkQk75KVgg/exec", program: "exam-drill", salt: "OrCGMHeriSh+q9/RwrcUog==", iter: 1000000, vA: "a940bb0e6ee2", vS: "16fd850f5043", sales: "p4vUKE0wuu09NLnyV8oS0Ha+hroWWEg073r1JAEyIBw=" };
+const CFG = { server: "https://script.google.com/macros/s/AKfycbyzVWu2yA0SrhPjy2i4_VHD22Ng3Qf6Beudxi_3kpYpGPNr8beYDkYrExUSvkQk75KVgg/exec", program: "exam-drill", salt: "OrCGMHeriSh+q9/RwrcUog==", iter: 1000000, vA: "cc077ba116a8", vS: "53ed50420dbf", sales: "p4vUKE0wuu09NLnyV8oS0Ha+hroWWEg073r1JAEyIBw=" };
 const SKEY = "siteKey_" + CFG.salt.slice(0, 8);
 const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
 const msg = t => { document.getElementById("msg").textContent = t || ""; };
